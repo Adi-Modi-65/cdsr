@@ -6,9 +6,16 @@
 
 **_Project Progress - 25%_**
 
-[Requirements](#Requirements)
-[Contribution By Team](#How-to-Contribute-as-a-Team-Member)
-[Resources](#Resources)
+[Requirements](#Requirements)\
+[Contribution By Team](#How-to-Contribute-as-a-Team-Member)\
+[Resources](#Resources)\
+
+### Important Requirements For Code
+The code should be-
+1. Optimised for best performance
+2. Good UI and UX and responsive according to Phone Sizes
+3. Modular (Changing one functionality in code should not affect another functionality)
+4. Use JS only (_We can gradually move to **TypeScript**_)
 
 ## Requirements
 
