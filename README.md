@@ -47,6 +47,13 @@
 
 For Git Commands - [Git Learning](https://docs.google.com/document/d/1FV9Cnl3CyYi4dUOMgGdILIYHYvIetTWHpcDnNYWQpb0/edit?usp=sharing)
 
+**Important** to keep the changes in _Sync with My_Repo_
+- `git remote add upstream https://github.com/Adi-Modi-65/cdsr.git`
+- `git pull --rebase upstream main` - _For all branches and commits from the original repo_
+- `git push origin main` - _Push the Updated Main Branch to Your Forked GitHub Repo_
+- Then make the **Pull Request** to **My_Repo**
+
+
 Then run commands-
 - `cd app`
 - `npm install`
