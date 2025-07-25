@@ -1,0 +1,93 @@
+# ----------------------------
+# macOS system files
+# ----------------------------
+.DS_Store
+
+# ----------------------------
+# Node.js
+# ----------------------------
+app/node_modules/
+app/npm-debug.log*
+app/yarn-debug.log*
+app/yarn-error.log*
+
+# ----------------------------
+# React Native build artifacts
+# ----------------------------
+app/android/.gradle/
+app/android/.idea/
+app/android/.cxx/
+app/android/local.properties
+app/android/*.keystore
+!app/android/debug.keystore
+app/android/app/build/
+
+app/ios/Pods/
+app/ios/build/
+app/ios/DerivedData/
+app/ios/*.hmap
+app/ios/*.ipa
+app/ios/*.xcuserstate
+app/ios/*.xccheckout
+app/ios/*.xcworkspace
+app/ios/*.pbxuser
+app/ios/*.mode1v3
+app/ios/*.mode2v3
+app/ios/*.perspectivev3
+app/ios/xcuserdata/
+
+app/build/
+app/**/*.jsbundle
+
+# ----------------------------
+# Metro cache & temporary files
+# ----------------------------
+app/.metro-cache/
+app/.metro-health-check*
+
+# ----------------------------
+# Testing & coverage
+# ----------------------------
+app/coverage/
+
+# ----------------------------
+# Fastlane artifacts
+# ----------------------------
+app/**/fastlane/report.xml
+app/**/fastlane/Preview.html
+app/**/fastlane/screenshots/
+app/**/fastlane/test_output/
+
+# ----------------------------
+# CocoaPods
+# ----------------------------
+app/vendor/bundle/
+
+# ----------------------------
+# Yarn (Zero-Install)
+# ----------------------------
+app/.yarn/*
+!app/.yarn/patches
+!app/.yarn/plugins
+!app/.yarn/releases
+!app/.yarn/sdks
+!app/.yarn/versions
+
+# ----------------------------
+# VS Code / IDEs
+# ----------------------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ----------------------------
+# Environment files (optional)
+# ----------------------------
+app/.env
+app/.env.local
+app/.env.production
+app/.env.staging
