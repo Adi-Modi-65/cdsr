@@ -8,7 +8,7 @@
 
 [Requirements](#Requirements)\
 [Contribution By Team](#How-to-Contribute-as-a-Team-Member)\
-[Resources](#Resources)\
+[Resources](#Resources)
 
 ### Important Requirements For Code
 The code should be-
