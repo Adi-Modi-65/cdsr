@@ -3,6 +3,57 @@
   "reactNativePath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native",
   "reactNativeVersion": "0.80",
   "dependencies": {
+    "@notifee/react-native": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\@notifee\\react-native",
+      "name": "@notifee/react-native",
+      "platforms": {
+        "ios": {
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\@notifee\\react-native\\RNNotifee.podspec",
+          "version": "9.1.8",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\@notifee\\react-native\\android",
+          "packageImportPath": "import io.invertase.notifee.NotifeePackage;",
+          "packageInstance": "new NotifeePackage()",
+          "buildTypes": [],
+          "componentDescriptors": [],
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/@notifee/react-native/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
+    "lottie-react-native": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\lottie-react-native",
+      "name": "lottie-react-native",
+      "platforms": {
+        "ios": {
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\lottie-react-native\\lottie-react-native.podspec",
+          "version": "7.2.4",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\lottie-react-native\\android",
+          "packageImportPath": "import com.airbnb.android.react.lottie.LottiePackage;",
+          "packageInstance": "new LottiePackage()",
+          "buildTypes": [],
+          "libraryName": "lottiereactnative",
+          "componentDescriptors": [
+            "LottieAnimationViewComponentDescriptor"
+          ],
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/lottie-react-native/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
     "react-native-background-actions": {
       "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-background-actions",
       "name": "react-native-background-actions",
@@ -75,6 +126,34 @@
         }
       }
     },
+    "react-native-gesture-handler": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-gesture-handler",
+      "name": "react-native-gesture-handler",
+      "platforms": {
+        "ios": {
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-gesture-handler\\RNGestureHandler.podspec",
+          "version": "2.27.2",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-gesture-handler\\android",
+          "packageImportPath": "import com.swmansion.gesturehandler.RNGestureHandlerPackage;",
+          "packageInstance": "new RNGestureHandlerPackage()",
+          "buildTypes": [],
+          "libraryName": "rngesturehandler_codegen",
+          "componentDescriptors": [
+            "RNGestureHandlerButtonComponentDescriptor",
+            "RNGestureHandlerRootViewComponentDescriptor"
+          ],
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
     "react-native-immediate-phone-call": {
       "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-immediate-phone-call",
       "name": "react-native-immediate-phone-call",
@@ -124,6 +203,96 @@
         }
       }
     },
+    "react-native-safe-area-context": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-safe-area-context",
+      "name": "react-native-safe-area-context",
+      "platforms": {
+        "ios": {
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-safe-area-context\\react-native-safe-area-context.podspec",
+          "version": "5.5.2",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-safe-area-context\\android",
+          "packageImportPath": "import com.th3rdwave.safeareacontext.SafeAreaContextPackage;",
+          "packageInstance": "new SafeAreaContextPackage()",
+          "buildTypes": [],
+          "libraryName": "safeareacontext",
+          "componentDescriptors": [
+            "RNCSafeAreaProviderComponentDescriptor",
+            "RNCSafeAreaViewComponentDescriptor"
+          ],
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
+    "react-native-screens": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-screens",
+      "name": "react-native-screens",
+      "platforms": {
+        "ios": {
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-screens\\RNScreens.podspec",
+          "version": "4.13.1",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-screens\\android",
+          "packageImportPath": "import com.swmansion.rnscreens.RNScreensPackage;",
+          "packageInstance": "new RNScreensPackage()",
+          "buildTypes": [],
+          "libraryName": "rnscreens",
+          "componentDescriptors": [
+            "RNSFullWindowOverlayComponentDescriptor",
+            "RNSScreenContainerComponentDescriptor",
+            "RNSScreenNavigationContainerComponentDescriptor",
+            "RNSScreenStackHeaderConfigComponentDescriptor",
+            "RNSScreenStackHeaderSubviewComponentDescriptor",
+            "RNSScreenStackComponentDescriptor",
+            "RNSSearchBarComponentDescriptor",
+            "RNSScreenComponentDescriptor",
+            "RNSScreenFooterComponentDescriptor",
+            "RNSScreenContentWrapperComponentDescriptor",
+            "RNSModalScreenComponentDescriptor",
+            "RNSBottomTabsComponentDescriptor"
+          ],
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
+    "react-native-select-contact": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-select-contact",
+      "name": "react-native-select-contact",
+      "platforms": {
+        "ios": {
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-select-contact\\react-native-select-contact.podspec",
+          "version": "1.6.3",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-select-contact\\android",
+          "packageImportPath": "import com.streem.selectcontact.SelectContactPackage;",
+          "packageInstance": "new SelectContactPackage()",
+          "buildTypes": [],
+          "componentDescriptors": [],
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-select-contact/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
     "react-native-sensors": {
       "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sensors",
       "name": "react-native-sensors",
@@ -141,6 +310,79 @@
           "buildTypes": [],
           "componentDescriptors": [],
           "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-sensors/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
+    "react-native-sound": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sound",
+      "name": "react-native-sound",
+      "platforms": {
+        "ios": {
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sound\\RNSound.podspec",
+          "version": "0.12.0",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sound\\android",
+          "packageImportPath": "import com.zmxv.RNSound.SoundPackage;",
+          "packageInstance": "new SoundPackage()",
+          "buildTypes": [],
+          "libraryName": "RNSoundSpec",
+          "componentDescriptors": [],
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-sound/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
+    "react-native-sqlite-storage": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sqlite-storage",
+      "name": "react-native-sqlite-storage",
+      "platforms": {
+        "ios": {
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sqlite-storage\\react-native-sqlite-storage.podspec",
+          "version": "6.0.1",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sqlite-storage\\platforms\\android",
+          "packageImportPath": "import org.pgsqlite.SQLitePluginPackage;",
+          "packageInstance": "new SQLitePluginPackage()",
+          "buildTypes": [],
+          "componentDescriptors": [],
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-sqlite-storage/platforms/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cxxModuleCMakeListsModuleName": null,
+          "cxxModuleCMakeListsPath": null,
+          "cxxModuleHeaderName": null,
+          "isPureCxxDependency": false
+        }
+      }
+    },
+    "react-native-video": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-video",
+      "name": "react-native-video",
+      "platforms": {
+        "ios": {
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-video\\react-native-video.podspec",
+          "version": "6.16.1",
+          "configurations": [],
+          "scriptPhases": []
+        },
+        "android": {
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-video\\android",
+          "packageImportPath": "import com.brentvatne.react.ReactVideoPackage;",
+          "packageInstance": "new ReactVideoPackage()",
+          "buildTypes": [],
+          "componentDescriptors": [],
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-video/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,

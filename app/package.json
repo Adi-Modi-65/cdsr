@@ -10,16 +10,28 @@
     "test": "jest"
   },
   "dependencies": {
+    "@notifee/react-native": "^9.1.8",
     "@react-native/new-app-screen": "0.80.1",
+    "@react-navigation/bottom-tabs": "^7.4.4",
+    "@react-navigation/native": "^7.1.16",
+    "@react-navigation/stack": "^7.4.4",
+    "lottie-react-native": "^7.2.4",
     "react": "19.1.0",
     "react-native": "0.80.1",
     "react-native-background-actions": "^4.0.1",
     "react-native-contacts": "^7.0.8",
     "react-native-geolocation-service": "^5.3.1",
+    "react-native-gesture-handler": "^2.27.2",
     "react-native-immediate-phone-call": "^2.0.0",
     "react-native-permissions": "^5.4.2",
     "react-native-phone-call": "^1.2.0",
-    "react-native-sensors": "^7.3.6"
+    "react-native-safe-area-context": "^5.5.2",
+    "react-native-screens": "^4.13.1",
+    "react-native-select-contact": "^1.6.3",
+    "react-native-sensors": "^7.3.6",
+    "react-native-sound": "^0.12.0",
+    "react-native-sqlite-storage": "^6.0.1",
+    "react-native-video": "^6.16.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
