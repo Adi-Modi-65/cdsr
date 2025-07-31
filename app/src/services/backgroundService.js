@@ -1,51 +1,59 @@
 import BackgroundService from 'react-native-background-actions';
-import {
-  startCrashDetection,
-  stopCrashDetection,
-} from '../utils/crashDetection';
+import { request, PERMISSIONS, RESULTS } from 'react-native-permissions';
+import { Platform } from 'react-native';
 
-let taskRunning = false;
-
-const backgroundTask = async (taskData) => {
-  const { threshold = 30, interval = 200 } = taskData;
-  taskRunning = true;
-
-  await startCrashDetection(() => {
-    console.log('Crash callback triggered from background!');
-    taskRunning = false; // Stop loop
-    BackgroundService.stop();
-  }, threshold, interval);
-
+const backgroundTask = async (taskDataArguments) => {
+  const { interval } = taskDataArguments;
   await new Promise(async (resolve) => {
-    while (taskRunning) {
-      await new Promise(res => setTimeout(res, 1000));
+    for (let i = 0; BackgroundService.isRunning(); i++) {
+      console.log('Running Driving Mode...', i);
+      await new Promise(r => setTimeout(r, interval || 1000));
     }
     resolve();
   });
 };
 
-export const startDrivingModeService = async () => {
+export const startDrivingModeService = async (onCrash) => {
+  console.log('start of driving mode');
+  globalOnCrashCallback = onCrash;
+
+  if (!onCrash || typeof onCrash !== 'function') {
+    console.warn('startDrivingModeService requires a callback');
+    return;
+  }
+
   try {
+    // Ensure permission
+    if (Platform.OS === 'android') {
+      const result = await request(PERMISSIONS.ANDROID.FOREGROUND_SERVICE);
+      console.log("hi")
+      if (result !== RESULTS.GRANTED) {
+        console.log('Foreground service permission not granted.');
+        return;
+      }
+    }
+
+    if (BackgroundService.isRunning()) {
+      await BackgroundService.stop();
+    }
+
     await BackgroundService.start(backgroundTask, {
       taskName: 'DrivingMode',
       taskTitle: 'Driving Mode Active',
-      taskDesc: 'Monitoring for crashes...',
-      taskIcon: { name: 'ic_launcher', type: 'mipmap' },
+      taskDesc: 'Monitoring for crashes…',
+      taskIcon: { name: 'ic_launcher', type: 'mipmap' }, // Optional, can remove if unstable
       color: '#007BFF',
-      parameters: { threshold: 30, interval: 200 },
-      linkingURI: 'safenav://',
+      parameters: { interval: 1000 },
     });
+
+    console.log('Service started successfully');
   } catch (error) {
-    console.error('Error starting background service:', error);
+    console.error('Error starting DrivingMode:', error);
   }
 };
 
+
 export const stopDrivingModeService = async () => {
-  try {
-    taskRunning = false;
-    stopCrashDetection();
-    await BackgroundService.stop();
-  } catch (error) {
-    console.error('Error stopping background service:', error);
-  }
+  taskRunning = false;
+  await BackgroundService.stop();
 };

@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   ActivityIndicator,
-  Platform,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getUser } from '../utils/db';
@@ -63,7 +62,7 @@ const HomeScreen = () => {
       <ScrollView
         contentContainerStyle={[
           styles.scrollContainer,
-          { paddingBottom: 40 + insets.bottom }, // Prevent tab bar overlap
+          { paddingBottom: 40 + insets.bottom },
         ]}
         keyboardShouldPersistTaps="handled"
       >

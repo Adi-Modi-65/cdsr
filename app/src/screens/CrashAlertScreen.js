@@ -28,7 +28,7 @@ const CrashAlertScreen = () => {
       clearInterval(interval);
       stopBeep();
       Vibration.cancel();
-      navigation.goBack(); // dismiss alert screen
+      navigation.goBack(); // Close screen if user responds
     });
 
     return () => {
@@ -40,15 +40,15 @@ const CrashAlertScreen = () => {
   }, []);
 
   const handleNoResponse = () => {
-    // TODO: Send SMS / Call emergency contact here
-    console.warn("No user response. Sending alert...");
+    console.warn('No user response. Sending emergency alert...');
+    // TODO: Add SMS or Call logic to emergency contacts
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Crash Detected</Text>
+      <Text style={styles.text}>🚨 Crash Detected!</Text>
       <Text style={styles.timer}>Respond in: {timer}s</Text>
-      <Text style={styles.info}>Double press power button if you are okay.</Text>
+      <Text style={styles.info}>Double press the power button if you're okay.</Text>
     </View>
   );
 };

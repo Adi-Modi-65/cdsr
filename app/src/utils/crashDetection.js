@@ -1,32 +1,32 @@
 import { accelerometer, setUpdateIntervalForType, SensorTypes } from 'react-native-sensors';
 import { Vibration } from 'react-native';
 
-let accelerometerSubscription = null;
-let crashCallback = null;
+let subscription = null;
 
-export const startCrashDetection = async (onCrashDetected, threshold = 30, interval = 200) => {
+export const startCrashDetection = (onCrashDetected, threshold = 30, interval = 200) => {
   try {
-    crashCallback = onCrashDetected;
     setUpdateIntervalForType(SensorTypes.accelerometer, interval);
 
-    accelerometerSubscription = accelerometer.subscribe(({ x, y, z }) => {
-      const magnitude = Math.sqrt(x ** 2 + y ** 2 + z ** 2);
-      console.log('Accelerometer magnitude:', magnitude);
-      if (magnitude > threshold) {
+    subscription = accelerometer.subscribe(({ x, y, z }) => {
+      const magnitude = Math.sqrt(x * x + y * y + z * z);
+      console.log('Accel magnitude:', magnitude);
+      if (magnitude >= threshold) {
         Vibration.vibrate(1000);
-        crashCallback?.();
+        onCrashDetected?.();
       }
     });
-  } catch (error) {
-    console.error('Crash detection error:', error);
+    console.log('Crash detection initiated');
+  } catch (err) {
+    console.error('CrashDetection start error:', err);
   }
 };
 
 export const stopCrashDetection = () => {
   try {
-    accelerometerSubscription?.unsubscribe();
-    accelerometerSubscription = null;
-  } catch (error) {
-    console.error('Error stopping crash detection:', error);
+    subscription?.unsubscribe();
+    subscription = null;
+    console.log('Crash detection stopped');
+  } catch (err) {
+    console.error('Error stopping crash detection:', err);
   }
 };

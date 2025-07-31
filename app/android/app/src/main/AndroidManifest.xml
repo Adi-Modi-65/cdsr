@@ -10,7 +10,6 @@
   <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
   <queries>
     <intent>
@@ -47,6 +46,7 @@
     <service
       android:name="com.asterinet.react.bgactions.BackgroundService"
       android:exported="false"
+      android:foregroundServiceType="location|microphone|camera"
     />
   </application>
 </manifest>
