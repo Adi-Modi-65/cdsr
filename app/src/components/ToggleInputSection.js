@@ -5,11 +5,15 @@ import {
   TextInput,
   Switch,
   StyleSheet,
+  Dimensions,
   Alert,
   KeyboardAvoidingView,
-  Platform
+  Platform,
 } from 'react-native';
-import { startDrivingModeService, stopDrivingModeService } from '../services/backgroundService';
+import {
+  startDrivingModeService,
+  stopDrivingModeService,
+} from '../services/backgroundService';
 
 const ToggleInputSection = () => {
   const [drivingMode, setDrivingMode] = useState(false);
@@ -17,28 +21,19 @@ const ToggleInputSection = () => {
   const [destination, setDestination] = useState('');
   const [focusedInput, setFocusedInput] = useState('');
 
-  const handleCrashDetected = () => {
-    console.log("Before alert",value)
-    // Alert.alert('🚨 Crash Detected', 'No response? Emergency alert to your contacts.');
-    console.log("After alert",value)
-  };
-
   const toggleDrivingMode = async (value) => {
-    debugger
-    console.log("Driving Button clicked",value)
     setDrivingMode(value);
     try {
       if (value) {
-        await startDrivingModeService(handleCrashDetected);
-        console.log("start driving mode completed")
-        Alert.alert('Driving Mode Enabled', 'Crash detection is active');
+        await startDrivingModeService();
+        Alert.alert('Driving Mode Enabled', 'Crash detection is active.');
       } else {
         await stopDrivingModeService();
-        Alert.alert('Driving Mode Disabled');
+        Alert.alert('Driving Mode Disabled', 'Crash detection stopped.');
       }
-    } catch (err) {
-      console.error('Toggle error:', err);
-      Alert.alert('Error', 'Could not toggle driving mode');
+    } catch (error) {
+      console.error('Driving Mode Error:', error);
+      Alert.alert('Error', 'Failed to toggle Driving Mode.');
     }
   };
 
@@ -83,43 +78,43 @@ const ToggleInputSection = () => {
   );
 };
 
+export default ToggleInputSection;
+
+const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    backgroundColor: '#f8f9fa',
-    flex: 1,
+    width: '100%',
+    padding: 12,
   },
   toggleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    backgroundColor: '#e1f5fe',
+    borderRadius: 14,
   },
   label: {
     fontSize: 18,
+    color: '#003366',
     fontWeight: '500',
-    color: '#333',
   },
   inputSection: {
-    marginTop: 10,
+    gap: 14,
   },
   input: {
-    backgroundColor: '#fff',
-    borderColor: '#ccc',
     borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 14,
     padding: 12,
-    borderRadius: 10,
-    marginBottom: 12,
     fontSize: 16,
-    color: '#000',
+    backgroundColor: '#fff',
+    width: '100%',
   },
   inputFocused: {
     borderColor: '#007BFF',
-    shadowColor: '#007BFF',
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
   },
 });
-
-export default ToggleInputSection;
