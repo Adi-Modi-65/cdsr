@@ -10,7 +10,6 @@
   <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
   <queries>
     <intent>
@@ -41,12 +40,7 @@
       </intent-filter>
     </activity>
 
-    <uses-library android:name="org.apache.http.legacy" android:required="false" />
     <service android:name="com.transistorsoft.rnbackgroundfetch.HeadlessTask"
       android:permission="android.permission.BIND_JOB_SERVICE" />
-    <service
-      android:name="com.asterinet.react.bgactions.BackgroundService"
-      android:exported="false"
-    />
   </application>
 </manifest>

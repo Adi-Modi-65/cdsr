@@ -1,19 +1,8 @@
 import React, { useState } from 'react';
 import {
-  View,
-  Text,
-  TextInput,
-  Switch,
-  StyleSheet,
-  Dimensions,
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
+  View, Text, TextInput, Switch, StyleSheet, Dimensions
 } from 'react-native';
-import {
-  startDrivingModeService,
-  stopDrivingModeService,
-} from '../services/backgroundService';
+import { useCrashDetection } from '../utils/crashDetection';
 
 const ToggleInputSection = () => {
   const [drivingMode, setDrivingMode] = useState(false);
@@ -21,32 +10,15 @@ const ToggleInputSection = () => {
   const [destination, setDestination] = useState('');
   const [focusedInput, setFocusedInput] = useState('');
 
-  const toggleDrivingMode = async (value) => {
-    setDrivingMode(value);
-    try {
-      if (value) {
-        await startDrivingModeService();
-        Alert.alert('Driving Mode Enabled', 'Crash detection is active.');
-      } else {
-        await stopDrivingModeService();
-        Alert.alert('Driving Mode Disabled', 'Crash detection stopped.');
-      }
-    } catch (error) {
-      console.error('Driving Mode Error:', error);
-      Alert.alert('Error', 'Failed to toggle Driving Mode.');
-    }
-  };
+  useCrashDetection(drivingMode);
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      style={styles.container}
-    >
+    <>
       <View style={styles.toggleContainer}>
         <Text style={styles.label}>Driving Mode</Text>
         <Switch
           value={drivingMode}
-          onValueChange={toggleDrivingMode}
+          onValueChange={setDrivingMode}
           thumbColor={drivingMode ? '#fff' : '#ccc'}
           trackColor={{ false: '#ccc', true: '#007BFF' }}
         />
@@ -58,7 +30,10 @@ const ToggleInputSection = () => {
             placeholder="Enter Source"
             value={source}
             onChangeText={setSource}
-            style={[styles.input, focusedInput === 'source' && styles.inputFocused]}
+            style={[
+              styles.input,
+              focusedInput === 'source' && styles.inputFocused
+            ]}
             onFocus={() => setFocusedInput('source')}
             onBlur={() => setFocusedInput('')}
             placeholderTextColor="#666"
@@ -67,14 +42,17 @@ const ToggleInputSection = () => {
             placeholder="Enter Destination"
             value={destination}
             onChangeText={setDestination}
-            style={[styles.input, focusedInput === 'destination' && styles.inputFocused]}
+            style={[
+              styles.input,
+              focusedInput === 'destination' && styles.inputFocused
+            ]}
             onFocus={() => setFocusedInput('destination')}
             onBlur={() => setFocusedInput('')}
             placeholderTextColor="#666"
           />
         </View>
       )}
-    </KeyboardAvoidingView>
+    </>
   );
 };
 
@@ -83,10 +61,6 @@ export default ToggleInputSection;
 const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    padding: 12,
-  },
   toggleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

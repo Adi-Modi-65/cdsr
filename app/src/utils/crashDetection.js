@@ -1,32 +1,58 @@
-import { accelerometer, setUpdateIntervalForType, SensorTypes } from 'react-native-sensors';
-import { Vibration } from 'react-native';
+import { useEffect, useRef } from 'react';
+import {
+  accelerometer,
+  gyroscope,
+  setUpdateIntervalForType,
+  SensorTypes,
+} from 'react-native-sensors';
+import { Alert } from 'react-native';
 
-let accelerometerSubscription = null;
-let crashCallback = null;
+export const useCrashDetection = (enabled = false) => {
+  const accelSub = useRef(null);
+  const gyroSub = useRef(null);
 
-export const startCrashDetection = async (onCrashDetected, threshold = 30, interval = 200) => {
-  try {
-    crashCallback = onCrashDetected;
-    setUpdateIntervalForType(SensorTypes.accelerometer, interval);
+  useEffect(() => {
+    debugger
+    if (!enabled) {
+      if (accelSub.current) accelSub.current.unsubscribe();
+      if (gyroSub.current) gyroSub.current.unsubscribe();
+      console.log('[CrashDetection] Sensors stopped');
+      return;
+    }
 
-    accelerometerSubscription = accelerometer.subscribe(({ x, y, z }) => {
-      const magnitude = Math.sqrt(x ** 2 + y ** 2 + z ** 2);
-      console.log('Accelerometer magnitude:', magnitude);
-      if (magnitude > threshold) {
-        Vibration.vibrate(1000);
-        crashCallback?.();
+    console.log('[CrashDetection] Sensors started');
+
+    // Set update intervals
+    setUpdateIntervalForType(SensorTypes.accelerometer, 200);
+    setUpdateIntervalForType(SensorTypes.gyroscope, 200);
+
+    // Accelerometer subscription
+    accelSub.current = accelerometer.subscribe(({ x, y, z }) => {
+      const total = Math.sqrt(x * x + y * y + z * z);
+
+      if (total > 20) {
+        console.log('[CrashDetection] Accelerometer: Possible crash detected');
+      }
+
+      if (total > 30) {
+        Alert.alert('Crash Detected!', `G-Force: ${total.toFixed(2)}`);
       }
     });
-  } catch (error) {
-    console.error('Crash detection error:', error);
-  }
-};
 
-export const stopCrashDetection = () => {
-  try {
-    accelerometerSubscription?.unsubscribe();
-    accelerometerSubscription = null;
-  } catch (error) {
-    console.error('Error stopping crash detection:', error);
-  }
+    // Gyroscope subscription
+    gyroSub.current = gyroscope.subscribe(({ x, y, z }) => {
+      const total = Math.sqrt(x * x + y * y + z * z);
+
+      if (total > 20) {
+        console.log('[CrashDetection] Gyroscope: Possible crash detected');
+      }
+    });
+
+    // Cleanup when component unmounts or toggle changes
+    return () => {
+      if (accelSub.current) accelSub.current.unsubscribe();
+      if (gyroSub.current) gyroSub.current.unsubscribe();
+      console.log('[CrashDetection] Sensors cleaned up');
+    };
+  }, [enabled]); // Trigger effect when `enabled` changes
 };
