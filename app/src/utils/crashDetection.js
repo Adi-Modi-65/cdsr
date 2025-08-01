@@ -1,58 +1,91 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   accelerometer,
   gyroscope,
   setUpdateIntervalForType,
   SensorTypes,
 } from 'react-native-sensors';
-import { Alert } from 'react-native';
+import { Platform, PermissionsAndroid } from 'react-native';
+import { startAlarm } from './alarm';
+import { registerNeutraliser } from './neutraliseAlarm';
 
-export const useCrashDetection = (enabled = false) => {
+const isCrash = (accelTotal, gyroTotal) => {
+  return accelTotal > 30 || gyroTotal > 20;
+};
+
+/**
+ * Calls onCrashDetected() --> crash (only once per toggle).
+ * @param {boolean} enabled - Whether crash detection should be active.
+ * @param {Function} onCrashDetected - Callback to run when crash is detected.
+ */
+
+export const useCrashDetection = (enabled = false, onCrashDetected = () => {
+  console.log('Crash detected! Triggering alarm...');
+  startAlarm();
+  registerNeutraliser();
+}) => {
   const accelSub = useRef(null);
   const gyroSub = useRef(null);
+  const crashTriggered = useRef(false); // to prevent duplicate triggers
+
+  const accelData = useRef(0);
+  const gyroData = useRef(0);
+
+  // Android runtime permission (only for Android)
+  const requestSensorPermissions = async () => {
+    if (Platform.OS === 'android') {
+      await PermissionsAndroid.requestMultiple([
+        PermissionsAndroid.PERMISSIONS.BODY_SENSORS,
+      ]);
+    }
+  };
 
   useEffect(() => {
-    debugger
+    crashTriggered.current = false;
+
     if (!enabled) {
-      if (accelSub.current) accelSub.current.unsubscribe();
-      if (gyroSub.current) gyroSub.current.unsubscribe();
-      console.log('[CrashDetection] Sensors stopped');
+      accelSub.current?.unsubscribe();
+      gyroSub.current?.unsubscribe();
+      console.log('Sensors stopped');
       return;
     }
 
-    console.log('[CrashDetection] Sensors started');
+    console.log('Sensors started');
+    requestSensorPermissions();
 
-    // Set update intervals
     setUpdateIntervalForType(SensorTypes.accelerometer, 200);
     setUpdateIntervalForType(SensorTypes.gyroscope, 200);
 
-    // Accelerometer subscription
     accelSub.current = accelerometer.subscribe(({ x, y, z }) => {
-      const total = Math.sqrt(x * x + y * y + z * z);
+      const totalAccel = Math.hypot(x, y, z);
+      accelData.current = totalAccel;
 
-      if (total > 20) {
-        console.log('[CrashDetection] Accelerometer: Possible crash detected');
-      }
-
-      if (total > 30) {
-        Alert.alert('Crash Detected!', `G-Force: ${total.toFixed(2)}`);
-      }
+      checkForCrash(); // check on every update
     });
 
-    // Gyroscope subscription
     gyroSub.current = gyroscope.subscribe(({ x, y, z }) => {
-      const total = Math.sqrt(x * x + y * y + z * z);
+      const totalGyro = Math.hypot(x, y, z);
+      gyroData.current = totalGyro;
 
-      if (total > 20) {
-        console.log('[CrashDetection] Gyroscope: Possible crash detected');
-      }
+      checkForCrash(); // check on every update
     });
 
-    // Cleanup when component unmounts or toggle changes
-    return () => {
-      if (accelSub.current) accelSub.current.unsubscribe();
-      if (gyroSub.current) gyroSub.current.unsubscribe();
-      console.log('[CrashDetection] Sensors cleaned up');
+    const checkForCrash = () => {
+      if (crashTriggered.current) return;
+      const crash = isCrash(accelData.current, gyroData.current);
+      console.log("Crash Detected", crash)
+
+      if (crash) {
+        crashTriggered.current = true;
+        onCrashDetected();
+      }
     };
-  }, [enabled]); // Trigger effect when `enabled` changes
+
+    // Clean up when driving mode turns off
+    return () => {
+      accelSub.current?.unsubscribe();
+      gyroSub.current?.unsubscribe();
+      console.log('Sensors cleaned up');
+    };
+  }, [enabled]);
 };

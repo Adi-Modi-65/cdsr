@@ -29,9 +29,9 @@
     "react-native-screens": "^4.13.1",
     "react-native-select-contact": "^1.6.3",
     "react-native-sensors": "^7.3.6",
-    "react-native-sound": "^0.12.0",
+    "react-native-sound-player": "^0.14.5",
     "react-native-sqlite-storage": "^6.0.1",
-    "react-native-video": "^6.16.1"
+    "react-native-volume-manager": "^2.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

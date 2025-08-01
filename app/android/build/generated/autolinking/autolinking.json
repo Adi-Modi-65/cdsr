@@ -317,24 +317,23 @@
         }
       }
     },
-    "react-native-sound": {
-      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sound",
-      "name": "react-native-sound",
+    "react-native-sound-player": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sound-player",
+      "name": "react-native-sound-player",
       "platforms": {
         "ios": {
-          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sound\\RNSound.podspec",
-          "version": "0.12.0",
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sound-player\\RNSoundPlayer.podspec",
+          "version": "0.14.5",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sound\\android",
-          "packageImportPath": "import com.zmxv.RNSound.SoundPackage;",
-          "packageInstance": "new SoundPackage()",
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-sound-player\\android",
+          "packageImportPath": "import com.johnsonsu.rnsoundplayer.RNSoundPlayerPackage;",
+          "packageInstance": "new RNSoundPlayerPackage()",
           "buildTypes": [],
-          "libraryName": "RNSoundSpec",
           "componentDescriptors": [],
-          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-sound/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-sound-player/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
@@ -366,23 +365,23 @@
         }
       }
     },
-    "react-native-video": {
-      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-video",
-      "name": "react-native-video",
+    "react-native-volume-manager": {
+      "root": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-volume-manager",
+      "name": "react-native-volume-manager",
       "platforms": {
         "ios": {
-          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-video\\react-native-video.podspec",
-          "version": "6.16.1",
+          "podspecPath": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-volume-manager\\react-native-volume-manager.podspec",
+          "version": "2.0.8",
           "configurations": [],
           "scriptPhases": []
         },
         "android": {
-          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-video\\android",
-          "packageImportPath": "import com.brentvatne.react.ReactVideoPackage;",
-          "packageInstance": "new ReactVideoPackage()",
+          "sourceDir": "C:\\Users\\Aadii\\Desktop\\Internship\\Projects\\cdsr\\app\\node_modules\\react-native-volume-manager\\android",
+          "packageImportPath": "import com.reactnativevolumemanager.VolumeManagerPackage;",
+          "packageInstance": "new VolumeManagerPackage()",
           "buildTypes": [],
           "componentDescriptors": [],
-          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-video/android/build/generated/source/codegen/jni/CMakeLists.txt",
+          "cmakeListsPath": "C:/Users/Aadii/Desktop/Internship/Projects/cdsr/app/node_modules/react-native-volume-manager/android/build/generated/source/codegen/jni/CMakeLists.txt",
           "cxxModuleCMakeListsModuleName": null,
           "cxxModuleCMakeListsPath": null,
           "cxxModuleHeaderName": null,
