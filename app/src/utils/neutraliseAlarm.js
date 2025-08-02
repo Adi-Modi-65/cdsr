@@ -7,35 +7,50 @@ let lastVolume = null;
 let volumeListener = null;
 
 export const registerNeutraliser = () => {
-  if (volumeListener) return;
-
-  VolumeManager.getVolume().then((vol) => {
-    lastVolume = vol.volume;
-  });
-
-  volumeListener = VolumeManager.addVolumeListener(({ volume }) => {
-    if (!isAlarmRunning()) return;
-
-    if (volume < lastVolume) {
-      const now = Date.now();
-      const timeDiff = now - lastPress;
-
-      if (timeDiff < 1200) {
-        pressCount++;
-      } else {
-        pressCount = 1;
-      }
-
-      lastPress = now;
-
-      if (pressCount === 2) {
-        stopAlarm();
-        console.log('Neutralised alarm via double volume-down.');
-        pressCount = 0;
-      }
+  return new Promise(resolve => {
+    if (volumeListener) {
+      resolve(false);
+      return;
     }
 
-    lastVolume = volume;
+    VolumeManager.getVolume().then(vol => {
+      lastVolume = vol.volume;
+    });
+
+    volumeListener = VolumeManager.addVolumeListener(({ volume }) => {
+      if (!isAlarmRunning()) return;
+
+      if (volume < lastVolume) {
+        const now = Date.now();
+        const timeDiff = now - lastPress;
+
+        if (timeDiff < 1200) {
+          pressCount++;
+        } else {
+          pressCount = 1;
+        }
+
+        lastPress = now;
+
+        if (pressCount === 2) {
+          stopAlarm();
+          console.log('Neutralised alarm via double volume-down.');
+          pressCount = 0;
+
+          unregisterNeutraliser();
+          resolve(true); // user neutralised
+        }
+      }
+
+      lastVolume = volume;
+    });
+
+    setTimeout(() => {
+      if (volumeListener) {
+        unregisterNeutraliser();
+        resolve(false); // user did not neutralise
+      }
+    }, 15000);
   });
 };
 

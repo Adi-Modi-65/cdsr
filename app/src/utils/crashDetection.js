@@ -8,6 +8,7 @@ import {
 import { Platform, PermissionsAndroid } from 'react-native';
 import { startAlarm } from './alarm';
 import { registerNeutraliser } from './neutraliseAlarm';
+import { sendEmergencySms } from './smsAlert';
 
 const isCrash = (accelTotal, gyroTotal) => {
   return accelTotal > 30 || gyroTotal > 20;
@@ -19,11 +20,19 @@ const isCrash = (accelTotal, gyroTotal) => {
  * @param {Function} onCrashDetected - Callback to run when crash is detected.
  */
 
-export const useCrashDetection = (enabled = false, onCrashDetected = () => {
-  console.log('Crash detected! Triggering alarm...');
-  startAlarm();
-  registerNeutraliser();
-}) => {
+export const useCrashDetection = (
+  enabled = false,
+  onCrashDetected = async () => {
+    console.log('Crash detected! Triggering alarm...');
+    startAlarm();
+    const neutralised = await registerNeutraliser();
+    if (!neutralised) {
+      sendEmergencySms();
+    } else {
+      console.log('Alarm neutralised by User, SMS not sent.');
+    }
+  },
+) => {
   const accelSub = useRef(null);
   const gyroSub = useRef(null);
   const crashTriggered = useRef(false); // to prevent duplicate triggers
@@ -73,7 +82,7 @@ export const useCrashDetection = (enabled = false, onCrashDetected = () => {
     const checkForCrash = () => {
       if (crashTriggered.current) return;
       const crash = isCrash(accelData.current, gyroData.current);
-      console.log("Crash Detected", crash)
+      console.log('Crash Detected', crash);
 
       if (crash) {
         crashTriggered.current = true;
